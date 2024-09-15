@@ -11,19 +11,17 @@ public class ApiIntegrationService {
 
     public static void main(String[] args) {
 
-        if (API_KEY == null || API_KEY.isEmpty()) {
-            System.err.println("Chave API não encontrada. Defina a variável de ambiente OPENAI_API_KEY.");
-            return;
-        }
-        //Classe OpenAiServise consertada
+
+        //Classe OpenAiServise Não funciona
         OpenAiService service = new OpenAiService(API_KEY);
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .prompt("Palmeiras tem mundial?")
                 .model("text-davinci-003")
                 .maxTokens(100)
                 .build();
-
-
+    
+        String resposta = service.createCompletion(request);
+        return resposta.getChoises().get(0).getText();
     }
 }
 
